@@ -1,0 +1,19 @@
+{
+  "name": "lux",
+  "version": "1.0.0",
+  "description": "Tiny library to build frontend reactive UIs",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.3",
+    "rollup": "^3.29.4",
+    "serve": "^14.2.1",
+    "typescript": "^5.2.2"
+  }
+}
