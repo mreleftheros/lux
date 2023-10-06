@@ -6,13 +6,34 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>demo 1</h1>
+    <div>
+      <div id="count">0</div>
+      <button id="incr">+</button>
+      <button id="decr">-</button>
+      <button id="reset">reset</button>
+    </div>
+    <div>
+      <h1>Display Count</h1>
+      <p lux-model="count">0</p>
+    </div>
 
     <script type="module">
-      import { createLuxApp } from "../src/App.js";
+      import { setAppWithLux } from "../src/index.js";
+      const { setModel, fire } = setAppWithLux();
 
-      const app = createLuxApp();
-      console.log(app);
+      const $displayCount = setModel("count");
+
+      $displayCount.listenFor("count:onIncr", (data) => {
+        console.log("I heard it and received ", data);
+      });
+
+      $displayCount.listenFor("count:onDecr", (data) => {
+        console.log("I heard it and received ", data);
+      });
+
+      $displayCount.listenFor("count:onReset", (_) => {
+        console.log("I heard it and received");
+      });
     </script>
   </body>
 </html>
