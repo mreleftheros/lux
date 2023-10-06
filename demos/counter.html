@@ -21,18 +21,31 @@
       import { setAppWithLux } from "../src/index.js";
       const { setModel, fire } = setAppWithLux();
 
-      const $displayCount = setModel("count");
+      const $displayCount = setModel("count", 0);
 
       $displayCount.listenFor("count:onIncr", (data) => {
-        console.log("I heard it and received ", data);
+        $displayCount.updateState(data);
       });
 
       $displayCount.listenFor("count:onDecr", (data) => {
-        console.log("I heard it and received ", data);
+        $displayCount.updateState(data);
       });
 
       $displayCount.listenFor("count:onReset", (_) => {
-        console.log("I heard it and received");
+        $displayCount.updateState(0);
+      });
+
+      incr.addEventListener("click", (e) => {
+        fire("count:onIncr", ++count.textContent);
+      });
+
+      decr.addEventListener("click", (e) => {
+        fire("count:onDecr", --count.textContent);
+      });
+
+      reset.addEventListener("click", (e) => {
+        count.textContent = 0;
+        fire("count:onReset", 0);
       });
     </script>
   </body>
